@@ -1,0 +1,5 @@
+- name: Submit jobs
+  command:
+    cmd: "sbatch {{ smatrix_template_dest }}"
+  loop: "{{ smatrix_dimensions | dict2product }}"
+  when: not item in smatrix_exclude

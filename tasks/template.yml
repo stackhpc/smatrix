@@ -1,0 +1,10 @@
+- name: Create template output directory
+  file:
+    path: "{{ smatrix_template_dest_dir }}"
+    state: directory
+- name: Create templates
+  template:
+    src: "{{ smatrix_template_src }}"
+    dest: "{{ smatrix_template_dest }}"
+  loop: "{{ smatrix_dimensions | dict2product }}"
+  when: not item in smatrix_exclude

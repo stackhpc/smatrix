@@ -1,0 +1,8 @@
+smatrix_template_src: template.sh.j2
+smatrix_template_dest: "{{ smatrix_template_dest_dir }}/{{ smatrix_template_basename }}{{ smatrix_template_suffix}}.{{ smatrix_template_ext}}"
+smatrix_template_dest_dir: .
+smatrix_template_basename: "{{ smatrix_template_src | basename | split('.') | first }}"
+smatrix_template_ext: "{{ (smatrix_template_src | split('.'))[1] }}"
+smatrix_template_suffix: ".{{ item.values() | join('-') }}"
+smatrix_dimensions: {}
+smatrix_exclude: []
