@@ -6,4 +6,5 @@ smatrix_template_ext: "{{ (smatrix_template_src | split('.'))[1] }}"
 smatrix_template_suffix: ".{{ item.values() | join('-') }}"
 smatrix_dimensions: {}
 smatrix_exclude: []
+smatrix_exclude_submit: []
 smatrix_dryrun: false
