@@ -53,3 +53,7 @@ The default is to construct the filename of the templated sbatch files from the 
 - `smatrix_template_ext`: Optional. Extension to use for templated sbatch files. Default is the 2nd dotted component of `smatrix_template_src`.
 - `smatrix_template_suffix`: Optional. String to use as run-specific suffix. Default is ".{{ item.values() | join('-') }}" where `item` is a dict for the run's dimension selections.
 - `smatrix_template_dest`: Optional. Path to output a templated sbatch file to. Default `"{{ smatrix_template_dest_dir }}/{{ smatrix_template_basename }}{{ smatrix_template_suffix}}.{{ smatrix_template_ext}}"`.
+
+## Tags
+- `template`
+- `submit`

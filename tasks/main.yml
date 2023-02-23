@@ -1,2 +1,4 @@
 - import_tasks: template.yml
+  tags: template
 - import_tasks: submit.yml
+  tags: submit
