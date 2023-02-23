@@ -23,9 +23,18 @@ def dict2product(d):
         output.append(dict(zip(d.keys(), v)))
     return output
 
+def is_subset_in(d, lst):
+    """ Return True if dict d is a subset of any dict in list lst """
+    d_items = d.items()
+    for t in lst:
+        if t.items() <= d_items:
+            return True
+    return False
+
 class FilterModule(object):
     
     def filters(self):
         return {
-            'dict2product': dict2product
+            'dict2product': dict2product,
+            'is_subset_in': is_subset_in,
         }
