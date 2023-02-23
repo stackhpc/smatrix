@@ -31,7 +31,6 @@ Playbook:
     smatrix_exclude:
       - nodes: 1
         myparam: A
-
   tasks:
     - import_role:
         name: smatrix
@@ -44,7 +43,6 @@ This example also demonstrates job control; because the job-name is set to a sin
 ## Role Variables
 
 - `smatrix_template_src`: Optional. Name or path of sbatch file to template. Default `template.sh.j2`. Note that this could potentially include dimension values.
-- `smatrix_template_dest`: Optional. Path to output a templated sbatch file to. Default "{{ smatrix_template_dest_dir }}/{{ smatrix_template_basename }}{{ smatrix_template_suffix}}.{{ smatrix_template_ext}}"
 - `smatrix_template_dest_dir`: Optional. Directory to write templated sbatch files into. Default `.`
 - `smatrix_dimensions`: Optional. Mapping defining dimensions for test matrix, where each key is the dimension name and each value is a list of possible values. These can be used for templating in `smatrix_template_src` using `{{ item.<dimension> }}` where `<dimension>` is a key name. Default is `{}`.
 - `smatrix_exclude`: Optional. List of dimension combinations to skip. Each element should be a dict with keys and values from `smatrix_dimensions`. Default is `[]`.
@@ -54,3 +52,4 @@ The default is to construct the filename of the templated sbatch files from the 
 - `smatrix_template_basename`: Optional. Base name of templated sbatch files. Default takes the 1st dotted component of `smatrix_template_src`.
 - `smatrix_template_ext`: Optional. Extension to use for templated sbatch files. Default is the 2nd dotted component of `smatrix_template_src`.
 - `smatrix_template_suffix`: Optional. String to use as run-specific suffix. Default is ".{{ item.values() | join('-') }}" where `item` is a dict for the run's dimension selections.
+- `smatrix_template_dest`: Optional. Path to output a templated sbatch file to. Default `"{{ smatrix_template_dest_dir }}/{{ smatrix_template_basename }}{{ smatrix_template_suffix}}.{{ smatrix_template_ext}}"`.
