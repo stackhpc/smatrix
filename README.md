@@ -46,6 +46,7 @@ This example also demonstrates job control; because the job-name is set to a sin
 - `smatrix_template_dest_dir`: Optional. Directory to write templated files into. Default `.`
 - `smatrix_dimensions`: Optional. Mapping defining dimensions for test matrix, where each key is the dimension name and each value is a list of possible values. These can be used for templating in `smatrix_template_src` using `{{ item.<dimension> }}` where `<dimension>` is a key name. Default is `{}`.
 - `smatrix_exclude`: Optional. List of dimension combinations to skip. Each element should be a dict with keys and values from `smatrix_dimensions`. Default is `[]`.
+- `smatrix_dryrun`: Optional. Set `true` to use `echo sbatch` as the command to submit, useful to see what will get submitted. Default `false`.
 
 ### Sbatch filename control
 The default is to construct the filename of the templated sbatch files from the `smatrix_template_src` basename, like: `template.sh.j2` -> `template.PARAMETERS.sh`, where `PARAMETERS` here is the run's dimension values joined with '-'. This can be overriden using the following variables:
