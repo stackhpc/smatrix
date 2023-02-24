@@ -48,6 +48,7 @@ This example also demonstrates job control; because the job-name is set to a sin
 - `smatrix_exclude`: Optional. List of dimension combinations to skip. Each element should be a dict with (possibly a subset) of keys and values from `smatrix_dimensions`. Default is `[]`.
 - `smatrix_exclude_submit`: Optional. Like `smatrix_exclude` but only excludes dimension combinations from submit stage. Useful if templating files which are not sbatch scripts.
 - `smatrix_dryrun`: Optional. Set `true` to use `echo sbatch` as the command to submit, useful to see what will get submitted. Default `false`.
+- `smatrix_git_describe`: Optional. String which can be used by templates to describe current repo state. Default is output of `git describe --all --long --dirty` e.g. `heads/main-0-g564df3e-dirty`. Set to any constant if *not* calling this role from inside a git repo.
 
 ### Sbatch filename control
 The default is to construct the filename of the templated sbatch files from the `smatrix_template_src` basename, like: `template.sh.j2` -> `template.PARAMETERS.sh`, where `PARAMETERS` here is the run's dimension values joined with '-'. This can be overriden using the following variables:
