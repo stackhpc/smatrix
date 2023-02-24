@@ -2,6 +2,8 @@
   file:
     path: "{{ smatrix_template_dest_dir }}"
     state: directory
+  loop: "{{ smatrix_dimensions | dict2product }}"
+  when: not item | is_subset_in(smatrix_exclude)
 - name: Create templates
   template:
     src: "{{ smatrix_template_src }}"
