@@ -8,3 +8,4 @@ smatrix_dimensions: {}
 smatrix_exclude: []
 smatrix_exclude_submit: []
 smatrix_dryrun: false
+smatrix_git_describe: "{{ lookup('pipe', 'git describe --all --long --dirty') }}"

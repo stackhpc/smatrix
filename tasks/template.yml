@@ -7,4 +7,4 @@
     src: "{{ smatrix_template_src }}"
     dest: "{{ smatrix_template_dest }}"
   loop: "{{ smatrix_dimensions | dict2product }}"
-  when: not item in smatrix_exclude
+  when: not item | is_subset_in(smatrix_exclude)
