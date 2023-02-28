@@ -1,9 +1,8 @@
 - name: Submit jobs
   command:
-    cmd: "{{ _sbatch_cmd }} {{ smatrix_template_dest }}"
+    cmd: "{{ _sbatch_cmd }} {{ smatrix_submit_src }}"
   loop: "{{ smatrix_dimensions | dict2product }}"
   when:
      - not item | is_subset_in(smatrix_exclude)
-     - not item | is_subset_in(smatrix_exclude_submit)
   vars:
     _sbatch_cmd: "{{ 'echo sbatch' if (smatrix_dryrun | default(false) | bool) else 'sbatch' }}"

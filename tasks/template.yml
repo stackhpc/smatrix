@@ -5,8 +5,6 @@
   loop: "{{ smatrix_dimensions | dict2product }}"
   when: not item | is_subset_in(smatrix_exclude)
 - name: Create templates
-  template:
-    src: "{{ smatrix_template_src }}"
-    dest: "{{ smatrix_template_dest }}"
+  include_tasks: template-files.yml
   loop: "{{ smatrix_dimensions | dict2product }}"
   when: not item | is_subset_in(smatrix_exclude)

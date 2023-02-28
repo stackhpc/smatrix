@@ -1,0 +1,8 @@
+- template:
+    src: "{{ smatrix_template_src }}"
+    dest: "{{ smatrix_template_dest }}"
+  loop: "{{ _smatrix_template_globs if (_smatrix_template_globs | length > 0) else [smatrix_template_src] }}"
+  loop_control:
+    loop_var: smatrix_template_src
+  vars:
+    _smatrix_template_globs: "{{ lookup('ansible.builtin.fileglob', smatrix_template_src, wantlist=True) }}"
