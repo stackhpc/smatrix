@@ -7,5 +7,6 @@ smatrix_template_suffix: ".{{ item.values() | join('-') }}"
 smatrix_dimensions: {}
 smatrix_exclude: []
 smatrix_submit_src: "{{ smatrix_template_dest }}"
+smatrix_output_path: ''
 smatrix_dryrun: false
 smatrix_git_describe: "{{ lookup('pipe', 'git describe --all --long --dirty') }}"

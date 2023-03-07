@@ -1,8 +1,21 @@
+- name: Check for output
+  stat:
+    path: "{{ smatrix_output_path }}"
+  register: _stat_output_path
+  loop: "{{ smatrix_dimensions | dict2product }}"
+  when:
+     - not item | is_subset_in(smatrix_exclude)
+
+- name: Convert stat output into mapping
+  set_fact:
+    _stat_output_paths: "{{ _stat_output_path.results | map_loop_results('stat') }}"
+
 - name: Submit jobs
   command:
     cmd: "{{ _sbatch_cmd }} {{ smatrix_submit_src }}"
   loop: "{{ smatrix_dimensions | dict2product }}"
   when:
      - not item | is_subset_in(smatrix_exclude)
+     - not _stat_output_paths[item | to_json].exists
   vars:
     _sbatch_cmd: "{{ 'echo sbatch' if (smatrix_dryrun | default(false) | bool) else 'sbatch' }}"
