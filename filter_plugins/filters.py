@@ -1,10 +1,3 @@
-from ansible.errors import AnsibleError, AnsibleFilterError
-from ansible.utils.display import Display
-from collections import defaultdict, MutableMapping
-import jinja2
-from ansible.module_utils.six import string_types
-import os.path
-import re
 import itertools
 import json
 
