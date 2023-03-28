@@ -1,3 +1,6 @@
+- debug:
+    msg: "Will produce at most {{ smatrix_dimensions | dict2product | length }} runs"
+  tags: always
 - import_tasks: template.yml
   tags: template
 - import_tasks: submit.yml
