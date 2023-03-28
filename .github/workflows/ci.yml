@@ -1,0 +1,35 @@
+---
+name: CI
+'on':
+  pull_request:
+  push:
+    branches:
+      - master
+jobs:
+  test:
+    name: Molecule
+    runs-on: ubuntu-20.04
+    strategy:
+      fail-fast: false
+    steps:
+      - name: Check out the codebase.
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install test dependencies.
+        run: |
+          pip3 install -U pip
+          pip install selinux ansible-core molecule
+
+      - name: Display ansible version
+        run:  ansible --version
+
+      - name: Run Molecule tests.
+        run: molecule test
+        env:
+          PY_COLORS: '1'
+          ANSIBLE_FORCE_COLOR: '1'
