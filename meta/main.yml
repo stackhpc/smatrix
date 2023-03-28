@@ -1,5 +1,6 @@
 galaxy_info:
   role_name: smatrix
+  namespace: stackhpc
   author: Steve Brasier
   description: Run a matrix of Slurm jobs by templating sbatch file(s).
   company: StackHPC
