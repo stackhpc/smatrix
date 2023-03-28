@@ -25,16 +25,18 @@ def is_subset_in(d, lst):
             return True
     return False
 
-def map_loop_results(results, attr):
-    """ Take a results attribute from a registered task, and convert it into a dict of item->attr
-        If the loop item is a dict, it is c"""
+def map_loop_results(results, attr, default=None):
+    """ Take a results attribute from a looped registered task, and convert it into a dict of item->attr
+        If the loop item is a dict, it is converted into a json string to make it usable as a dict key.
+        If 'attr' is not presnet in the task (e.g. because it's been skipped in a loop) then use 'default' if provided else error.
+    """
     output = {}
     for res in results:
         if isinstance(res['item'], dict):
             key = json.dumps(res['item'])
         else:
             key = res['item']
-        output[key] = res[attr]
+        output[key] = res.get(attr, default)
     return output
 
 class FilterModule(object):
