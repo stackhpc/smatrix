@@ -14,3 +14,18 @@
   tasks:
     - import_role:
         name: smatrix
+      vars:
+        smatrix_dryrun: true
+        smatrix_output_path: out/{{ item.nodes }}-{{ item.myparam }}.out
+    - name: Fake output files from sbatch
+      # This is required to pass molecule's idempoency check, but also tests the `smatrix_output_path` functionality
+      command:
+        cmd: "touch out/{{ item.nodes }}-{{ item.myparam }}.out"
+      changed_when: false
+      loop:
+        - nodes: 1
+          myparam: B
+        - nodes: 2
+          myparam: A
+        - nodes: 2
+          myparam: B
