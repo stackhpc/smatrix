@@ -8,7 +8,7 @@
 
 - name: Convert stat output into mapping
   set_fact:
-    _stat_output_paths: "{{ _stat_output_path.results | map_loop_results('stat') }}"
+    _stat_output_paths: "{{ _stat_output_path.results | map_loop_results('stat', {'exists':false} ) }}"
 
 - name: Submit jobs
   command:
