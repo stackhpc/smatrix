@@ -1,0 +1,7 @@
+#!/usr/bin/bash
+#SBATCH --job-name=test
+#SBATCH --nodes={{ item.nodes }}
+#SBATCH --dependency=singleton
+echo myparam: {{ item.myparam }}
+srun hostname
+sleep 30
