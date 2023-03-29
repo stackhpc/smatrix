@@ -1,0 +1,21 @@
+- hosts: localhost
+  become: no
+  gather_facts: no
+  vars:
+    smatrix_dimensions:
+      nodes: [1,2]
+      myparam:
+        - A
+        - B
+    smatrix_template_dest_dir: out
+    smatrix_exclude:
+      - nodes: 1
+        myparam: A
+  tasks:
+    - import_role:
+        name: smatrix
+      vars:
+        smatrix_dryrun: true
+        # define the template itself as the sbatch output, to pass 
+        # molecule's idempoency check & and test the `smatrix_output_path` functionality
+        smatrix_output_path: out/template.{{ item.nodes }}-{{ item.myparam }}.sh

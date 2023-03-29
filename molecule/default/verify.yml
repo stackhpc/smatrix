@@ -1,0 +1,16 @@
+- hosts: localhost
+  become: no
+  gather_facts: no
+  tasks:
+    - name: Diff expected vs actual output
+      command: diff ok/template.{{ item }}.sh out/template.{{ item }}.sh
+      loop:
+        # - 1-A # excluded
+        - 1-B
+        - 2-A
+        - 2-B
+      register: diff
+    - name: Check expected == actual output
+      assert:
+        that: "item.stdout == ''"
+      loop: "{{ diff.results }}"

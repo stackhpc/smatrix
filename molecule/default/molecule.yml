@@ -1,0 +1,13 @@
+---
+driver:
+  name: delegated # see https://molecule.readthedocs.io/en/latest/configuration/#delegated
+  options:
+    managed: False
+    ansible_connection_options:
+      ansible_connection: local
+platforms:
+  - name: fake # must define a platform, even though we don't need one
+provisioner:
+  name: ansible
+verifier:
+  name: ansible
